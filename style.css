@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap');
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --height_header: 8rem;
+}
+
+html {
+  height: 100%;
+  font-size: 10px;
+}
+
+body {
+  padding-top: var(--height_header);
+  height: calc(100%);
+  background-color: #5D45BD;
+}
+
+.header {
+  width: 100%;
+  height: var(--height_header);
+  padding: 1rem 4rem;
+  display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: row;
+  align-items: center;
+  background-color: #724FFF;
+}
+
+.header__brand{
+  min-width: 250px;
+}
+
+.header__brand h1{
+  font-weight: 700;
+  font-size: 3.2rem;
+  color: #FFFFFF;
+}
+
+.header__search{
+  width: 100%;
+  height: 100%;
+  padding-left: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.header__search__searchbox{
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  height: 6rem;
+  padding: 0rem 1.5rem;
+  background: transparent;
+  color: #FFFFFF;
+  border: none;
+  /* border-bottom: 3px solid rgba(255, 255, 255, .8); */
+  outline: none;
+}
+
+.header__search__searchbox:focus, 
+.header__search__searchbox:hover{
+  /* border-bottom: 3px solid #ffffff; */
+}
+
+.header__search__searchbox::placeholder{
+  opacity: .3;
+  color: #FFFFFF;
+}
+
+.header__search__search_button{
+  padding: 1rem;
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.wrapper{
+  width: 95%;
+  max-width: 140rem;
+  height: 100%;
+  margin: calc(10rem) auto 0 auto;
+  padding: 1rem 0;
+  border-radius: 4rem 4rem 0 0;
+  background-color: #FFFFFF;
+}
+
+.results{
+  background-color: #FFFFFF;
+}
+
+.results__title{
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: center;
+  font-size: 2.4rem;
+}
+
+.results__list{
+  margin: 1rem;
+  line-height: 0;
+   
+  -webkit-column-count: 5;
+  -webkit-column-gap:   5px;
+  -moz-column-count:    5;
+  -moz-column-gap:      5px;
+  column-count:         5;
+  column-gap:           5px; 
+}
+
+.results__result{
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #F7E6FF;
+}
+
+.results__result:hover{
+  background-color: #F7E6FF;
+}
+
+.results__result__img{
+  width: 100%;
+}
+
+.results__result__img img{
+  width: 100%;
+  border-radius: 12px 12px 0px 0px;
+}
+
+.results__result__info {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.results__result__info span{
+  padding: 1rem 0;
+}
