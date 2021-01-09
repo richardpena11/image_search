@@ -5,20 +5,18 @@ const resultTitleDOM = document.querySelector(".results__title")
 const resultListDOM = document.querySelector(".results__list")
 
 // Display results list in DOM 
-
 const displayResults = (query, data) => {
 
   // Display query as title of results
   resultTitleDOM.innerHTML = query
 
-  // Display results
   for (const result of data.results){
 
     // Formate dates to American dates
     const formatDateArr = (result.created_at.split('T')[0]).split("-").reverse()
     const formatDate = `${formatDateArr[1]} / ${formatDateArr[0]} / ${formatDateArr[1]}`
 
-    // Display results
+    // Create Markup and add it to DOM
     const markup = `        
     <div class="results__result">
       <div class="results__result__img">
@@ -34,7 +32,7 @@ const displayResults = (query, data) => {
   }
 }
 
-// Requesty a photo list from unsplash API using query from input
+// Request a photo list from unsplash API using query from input
 const search = async (query) => {
   let response = fetch(`
   https://api.unsplash.com//search/photos?query=${query}&per_page=20&content_filter=high&client_id=Ysi_xViBnzo2NbRkzjdNSHVZjQD1NIWLWEjk9zHxAPY
@@ -44,7 +42,7 @@ const search = async (query) => {
   displayResults(query, data)
 }
 
-// Check if the key pressed was enter or click in search button
+// Check if the key pressed was enter or was a click in search button
 const checkKeyPress = e => {
   if(e.keyCode === 13 || e.key === undefined){
     search(searchbox.value)
