@@ -7,6 +7,10 @@ const resultListDOM = document.querySelector(".results__list")
 // Display results list in DOM 
 const displayResults = (query, data) => {
 
+  searchboxDOM.value = ""
+  resultListDOM.innerHTML = ""
+
+
   // Display query as title of results
   resultTitleDOM.innerHTML = query
 
