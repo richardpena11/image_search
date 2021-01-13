@@ -8,29 +8,34 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="header">
+  <header class="header">
     <div class="header__brand">
       <h1>
-        Image Search
+        <a href="/">
+          Image Search
+        </a>
       </h1>
     </div>
     <div class="header__search">
-      <input class="header__search__searchbox" type="text" placeholder="Search..." id="searchbox">
+      <div class="header__search__searchbox">
+        <input class="header__search__searchbox__input" type="text" placeholder="Search..." id="searchbox">
+      </div>
       <div class="header__search__search_button" id="searchButton">
         <i class="fas fa-search"></i>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="wrapper">
+  <main class="wrapper">
     <div class="results">
-      <h3 class="results__title"> call an action text </h3>
+      <h3 class="results__title"> Use the input above to search for pictures! </h3>
       <div class="results__list"> 
       </div>
     </div>
-  </div>
+  </main>
 
   <script src="https://kit.fontawesome.com/c90d855d69.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
   <script src="/main.js"></script>
 </body>
 </html>
