@@ -1,12 +1,11 @@
-// DOM Resources
 const searchButtonDOM = document.getElementById("searchButton")
 const searchboxDOM = document.getElementById("searchbox")
 const resultTitleDOM = document.querySelector(".results__title")
 const resultListDOM = document.querySelector(".results__list")
 
-// Display results list in DOM 
 const displayResults = (query, data) => {
 
+  // Reset DOM
   searchboxDOM.value = ""
   resultListDOM.innerHTML = ""
 
@@ -15,18 +14,16 @@ const displayResults = (query, data) => {
 
   for (const [i, result] of data.results.entries()){
 
-    console.log(i+ 1)
-
     // Formate dates to American dates
     const formatDateArr = (result.created_at.split('T')[0]).split("-").reverse()
     const formatDate = `${formatDateArr[1]} / ${formatDateArr[0]} / ${formatDateArr[1]}`
 
     // Create Markup and add it to DOM
     const markup = `        
-    <div class="results__result grid-item" id="${result.id}">
+    <div class="results__result" id="${result.id}">
 
       <a href="${result.links.html}" target="_blank" class="results__result__img">
-        <img src=${result.urls.thumb} alt="${result.alt_description}">
+        <img src=${result.urls.regular} alt="${result.alt_description}">
       </a>
 
       <div class="results__result__extra">
@@ -35,15 +32,44 @@ const displayResults = (query, data) => {
 
       <div class="results__result__info">
         <span class="results__result__info__user">${result.user.username}</span>
-        <span class="results__result__info__likes"><i class="fas fa-heart"></i> ${result.likes}</span>
       </div>
       
     </div>`
       
     resultListDOM.insertAdjacentHTML("beforeend", markup)
-      
+
+    // Adding animation
     gsap.to(resultListDOM.lastChild, {duration: .2, delay: i / 20, opacity: 1, y: -20})
   }
+}
+
+const displayError = (query) => {
+
+  // Reset DOM
+  searchboxDOM.value = ""
+  resultListDOM.innerHTML = ""
+
+  resultTitleDOM.innerHTML = `Sorry!`
+
+  // Create Markup and add it to DOM
+  const markup = `        
+  <div class="results__error">
+
+    <h3 class="results__error__title">
+      We couldn't find pictures about <span>${query}</span>
+    </h3>
+
+    <div class="results__error__icon"
+      <i class="fas fa-smile-wink"></i>
+    </div>
+
+    <p class="results__error__info">
+      Double check your spell and try again!
+    </p>
+
+  </div>`
+    
+  resultListDOM.innerHTML = markup
 }
 
 // Request a photo list from unsplash API using query from input
@@ -61,7 +87,11 @@ const search = async (query) => {
   `)
   const data = await (await response).json()
 
-  displayResults(query, data)
+  if(data.total > 0) {
+    displayResults(query, data)
+  } else {
+    displayError(query)
+  }
 }
 
 // Check if the key pressed was enter or was a click in search button
@@ -81,4 +111,5 @@ const checkKeyPress = e => {
 searchButtonDOM.addEventListener("click", checkKeyPress)
 searchboxDOM.addEventListener("keypress", checkKeyPress)
 
-search("hello");
+// Initial search
+search("city");
